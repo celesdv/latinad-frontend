@@ -1,23 +1,29 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import { AuthProvider } from "./context/AuthContext";
-import ScreensPage from "./pages/ScreensPages";
 import { ProtectedRoute } from "./ProtectedRoute";
+import NavBar from "./components/NavBar";
+import LoginPage from "./pages/LoginPage"
+import DisplayPage from "./pages/DisplayPages";;
+import { AuthProvider } from "./context/AuthContext";
+import { DisplayProvider } from "./context/DisplayContext";
+
 
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path="/screens" element={<ScreensPage />} />
-            <Route path="/screens/:id" element={<h1>Editar Pantalla</h1>} />
-            <Route path="/add-screen" element={<h1>Nueva Pantalla</h1>} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <DisplayProvider>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<h1>Home</h1>} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/display" element={<DisplayPage />} />
+              <Route path="/display/:id" element={<h1>Editar Pantalla</h1>} />
+              <Route path="/add-display" element={<h1>Nueva Pantalla</h1>} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </DisplayProvider>
     </AuthProvider>
   );
 }

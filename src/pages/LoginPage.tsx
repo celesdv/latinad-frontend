@@ -24,7 +24,7 @@ function LoginPage() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (isAuthenticated) navigate('/screens')
+        if (isAuthenticated) navigate('/display')
     }, [isAuthenticated])
 
     const onSubmit: SubmitHandler<LoginInputs> = async (values) => {
@@ -34,7 +34,7 @@ function LoginPage() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center p-6 h-screen">
+        <div className="flex flex-col items-center justify-center p-6 h-[calc(100vh-68px)]">
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col gap-5 w-96 max-w-full h-auto shadow-xl bg-gradient-to-b from-sky-900 to-sky-600 p-6 rounded-lg">

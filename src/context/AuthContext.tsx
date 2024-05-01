@@ -1,28 +1,30 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { loginRequest } from "../api/auth";
 
-type Props = {
+type IProps = {
   children?: ReactNode;
 };
 
-type User = {
+type IUser = {
   email: string;
   password: string;
   token: string;
 };
 
-type AuthContextType = {
-  user: User | null;
-  login: (data: any) => Promise<void>;
+type IAuthContext = {
+  user: IUser | null;
   isAuthenticated: boolean;
   loginError: any;
+  login: (data: any) => Promise<void>;
+  logout: () => void;
 };
 
-export const AuthContext = createContext<AuthContextType>({
+export const AuthContext = createContext<IAuthContext>({
   user: null,
-  login: async () => {},
   isAuthenticated: false,
   loginError: null,
+  login: async () => { },
+  logout: () => { }
 });
 
 export const useAuth = () => {
@@ -33,8 +35,8 @@ export const useAuth = () => {
   return context;
 };
 
-export const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<User | null>(null);
+export const AuthProvider = ({ children }: IProps) => {
+  const [user, setUser] = useState<IUser | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loginError, setLoginError] = useState<any | null>(null);
 
@@ -43,15 +45,19 @@ export const AuthProvider = ({ children }: Props) => {
       const res = await loginRequest(values);
       setUser(res.data);
       setIsAuthenticated(true);
-      if (user) localStorage.setItem("token", user?.token);
     } catch (error: any) {
       setLoginError(error);
       console.error("Login error:", error);
     }
   };
 
+  const logout = () => {
+    setUser(null),
+      setIsAuthenticated(false)
+  }
+
   return (
-    <AuthContext.Provider value={{ login, user, isAuthenticated, loginError }}>
+    <AuthContext.Provider value={{ login, logout, user, isAuthenticated, loginError }}>
       {children}
     </AuthContext.Provider>
   );
