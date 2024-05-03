@@ -23,8 +23,8 @@ export const AuthContext = createContext<IAuthContext>({
   user: null,
   isAuthenticated: false,
   loginError: null,
-  login: async () => { },
-  logout: () => { }
+  login: async () => {},
+  logout: () => {},
 });
 
 export const useAuth = () => {
@@ -45,6 +45,7 @@ export const AuthProvider = ({ children }: IProps) => {
       const res = await loginRequest(values);
       setUser(res.data);
       setIsAuthenticated(true);
+      localStorage.setItem("tkn", res.data.token);
     } catch (error: any) {
       setLoginError(error);
       console.error("Login error:", error);
@@ -52,12 +53,15 @@ export const AuthProvider = ({ children }: IProps) => {
   };
 
   const logout = () => {
-    setUser(null),
-      setIsAuthenticated(false)
-  }
+    setUser(null);
+    setIsAuthenticated(false);
+    localStorage.removeItem("tkn");
+  };
 
   return (
-    <AuthContext.Provider value={{ login, logout, user, isAuthenticated, loginError }}>
+    <AuthContext.Provider
+      value={{ login, logout, user, isAuthenticated, loginError }}
+    >
       {children}
     </AuthContext.Provider>
   );

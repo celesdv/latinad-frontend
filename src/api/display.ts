@@ -1,7 +1,7 @@
 import { axiosPrivate } from "./axios";
 
 export const getDisplayRequest = async (
-  pageSize = 10,
+  pageSize = 8,
   offset = 0,
   name?: string,
   type?: string
