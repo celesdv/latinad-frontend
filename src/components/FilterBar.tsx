@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import useDisplay from "../hooks/useDisplay";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useEffect } from "react";
 
 type LoginInputs = {
   name: string;
@@ -9,12 +10,19 @@ type LoginInputs = {
 };
 
 function FilterBar() {
-  const { getDisplay } = useDisplay();
+  const { getDisplay, name, type } = useDisplay();
 
   const {
     register,
     handleSubmit,
+    setValue
   } = useForm<LoginInputs>();
+
+  useEffect(()=>{
+    setValue('name', name)
+    if(type && type ==='indoor') setValue('indoor', true)
+      if(type && type ==='outdoor') setValue('outdoor', true)
+  }, [name, type])
 
   const onSubmit: SubmitHandler<LoginInputs> = async (values) => {
     const selectType = () => {

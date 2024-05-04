@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Loader from "../components/Loader";
 import useDisplay from "../hooks/useDisplay";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 type IDisplayInputs = {
     name: string;
@@ -27,19 +27,50 @@ function FormDisplayPage() {
         register,
         handleSubmit,
         formState: { errors },
+        setValue,
     } = useForm<IDisplayInputs>();
-    const { createDisplay, isCreated } = useDisplay()
+    const { createDisplay, isCreated, getDisplayBy, updateDisplay, isUpdated } = useDisplay();
     const navigate = useNavigate();
+    const params = useParams();
+
+    useEffect(() => {
+        async function loadDisplay() {
+            setFormStatus(FORM_STATUS.UPLOADING);
+            if (params.id) {
+                const dis: any = await getDisplayBy(Number(params.id));
+                setValue("name", dis.name);
+                setValue("description", dis.description);
+                setValue("price_per_day", dis.price_per_day);
+                setValue("resolution_height", dis.resolution_height);
+                setValue("resolution_width", dis.resolution_width);
+                setValue("type", dis.type);
+                setFormStatus(FORM_STATUS.IDLE);
+            }
+        }
+        loadDisplay();
+
+    }, []);
 
     useEffect(() => {
         if (isCreated) {
             navigate("/display");
         }
     }, [isCreated]);
+    
+    useEffect(() => {
+        if (isUpdated) {
+            navigate("/display");
+        }
+    }, [isUpdated]);
 
     const onSubmit: SubmitHandler<IDisplayInputs> = async (values) => {
         setFormStatus(FORM_STATUS.UPLOADING);
-        await createDisplay(values)
+        if (params.id) {
+            await updateDisplay(values, Number(params.id))
+        } else {
+            await createDisplay(values);
+        }
+
     };
 
     return (
@@ -167,7 +198,7 @@ function FormDisplayPage() {
                             type="submit"
                             className="flex text-neutral-100 bg-sky-700 font-bold uppercase rounded py-3 justify-center"
                         >
-                            Añadir
+                            {params.id ? "Actualizar" : "Añadir"}
                         </button>
                     )}
 

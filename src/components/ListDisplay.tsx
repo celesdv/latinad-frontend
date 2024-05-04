@@ -22,7 +22,7 @@ function ListDisplay() {
     setCurrentPage(1);
   }, [totalDisplay]);
 
-  const handlePageChange = (page: number) => {
+   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     if (page > 1) {
       setOffset(pageSize * (page - 1));
