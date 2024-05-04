@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { PlusIcon } from "@heroicons/react/24/solid";
 
 function NavBar() {
   const { isAuthenticated, logout } = useAuth();
@@ -21,7 +22,15 @@ function NavBar() {
           </span>
         </Link>
 
-        <div className="">
+        <div className="flex gap-2">
+          {isAuthenticated && (
+            <Link to="display/form">
+              <div className="flex items-center gap-1 text-neutral-100 focus:outline-none rounded-full text-sm px-4 py-2 text-center bg-sky-600 hover:bg-sky-700">
+                <PlusIcon className="size-5 text-neutral-100" /> 
+                <p className="hidden md:inline">Añadir</p>
+              </div>
+            </Link>
+          )}
           <button
             type="button"
             onClick={sessionHandler}

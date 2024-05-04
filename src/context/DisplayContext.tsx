@@ -18,17 +18,19 @@ type IDisplay = {
 };
 
 type IDisplayContext = {
-  display: IDisplay[] | null;
+  display: IDisplay[];
   isCreated: boolean;
+  totalDisplay: number;
   createDisplay: (data: any) => {};
-  getDisplay: () => {};
+  getDisplay: (offset?: number, name?: string, type?: string) => {};
 };
 
 export const DisplayContext = createContext<IDisplayContext>({
-  display: null,
-  isCreated:false,
-  createDisplay: async () => {},
-  getDisplay: async () => {},
+  display: [],
+  isCreated: false,
+  totalDisplay: 0,
+  createDisplay: async () => { },
+  getDisplay: async () => { },
 });
 
 export const useDisplay = () => {
@@ -40,13 +42,16 @@ export const useDisplay = () => {
 };
 
 export const DisplayProvider = ({ children }: IProps) => {
-  const [display, setDisplay] = useState<IDisplay[] | null>([]);
-  const [isCreated, setIsCreated]= useState<boolean>(false);
+  const [display, setDisplay] = useState<IDisplay[]>([]);
+  const [isCreated, setIsCreated] = useState<boolean>(false);
+  const [totalDisplay, setTotalDisplay] = useState<number>(1)
 
-  const getDisplay = async () => {
+  const getDisplay = async (offset = 0, name = '', type = '') => {
+    const pageSize = 10
     try {
-      const res = await getDisplayRequest();
-      setDisplay(res.data.data);
+      const res = await getDisplayRequest(pageSize, offset, name, type);
+      setDisplay(res.data.data)
+      setTotalDisplay(res.data.totalCount)
     } catch (error) {
       console.error(error);
     }
@@ -62,7 +67,7 @@ export const DisplayProvider = ({ children }: IProps) => {
   };
 
   return (
-    <DisplayContext.Provider value={{ display, createDisplay, getDisplay, isCreated }}>
+    <DisplayContext.Provider value={{ display, totalDisplay, createDisplay, getDisplay, isCreated }}>
       {children}
     </DisplayContext.Provider>
   );
