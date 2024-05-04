@@ -20,10 +20,12 @@ type IDisplay = {
 };
 
 function SliderDisplay() {
+    // Obtiene los datos de visualización y el estado de carga del hook personalizado useDisplay
     const { display, loading } = useDisplay();
 
     return (
         <div className="container p-4">
+             {/* Si no está cargando, muestra el slider, de lo contrario, muestra un indicador de carga */}
             {!loading ? (
                 <Swiper
                     effect={"coverflow"}
@@ -47,6 +49,7 @@ function SliderDisplay() {
                 >
                     <div className="overflow-hidden w-100">
                         <div className="flex whitespace-nowrap animate-scroll">
+                             {/* Mapea cada elemento de visualización en un SwiperSlide con un DisplayCard */}
                             {display.map((el: IDisplay, index: number) => {
                                 return (
                                     <SwiperSlide key={index}>

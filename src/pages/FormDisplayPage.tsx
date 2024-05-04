@@ -4,6 +4,7 @@ import Loader from "../components/Loader";
 import useDisplay from "../hooks/useDisplay";
 import { useNavigate, useParams } from "react-router-dom";
 
+// Definición de los tipos de entrada para el formulario
 type IDisplayInputs = {
     name: string;
     description: string;
@@ -13,15 +14,18 @@ type IDisplayInputs = {
     type: string;
 };
 
+// Enumeración de los posibles estados del formulario
 const FORM_STATUS = {
     IDLE: "idle",
     UPLOADING: "uploading",
     ERROR: "error",
 } as const;
 
+// Definición del tipo de datos para el estado del formulario
 type StatusType = (typeof FORM_STATUS)[keyof typeof FORM_STATUS];
 
 function FormDisplayPage() {
+    // Estado del formulario y funciones para manejarlo
     const [formStatus, setFormStatus] = useState<StatusType>(FORM_STATUS.IDLE);
     const {
         register,
@@ -33,6 +37,7 @@ function FormDisplayPage() {
     const navigate = useNavigate();
     const params = useParams();
 
+    // Efecto para cargar los datos de visualización si se está editando
     useEffect(() => {
         async function loadDisplay() {
             setFormStatus(FORM_STATUS.UPLOADING);
@@ -44,25 +49,21 @@ function FormDisplayPage() {
                 setValue("resolution_height", dis.resolution_height);
                 setValue("resolution_width", dis.resolution_width);
                 setValue("type", dis.type);
-                setFormStatus(FORM_STATUS.IDLE);
             }
+            setFormStatus(FORM_STATUS.IDLE);
         }
         loadDisplay();
 
     }, []);
 
+    // Efectos para redirigir después de crear o actualizar una visualización
     useEffect(() => {
-        if (isCreated) {
+        if (isCreated || isUpdated) {
             navigate("/display");
         }
-    }, [isCreated]);
-    
-    useEffect(() => {
-        if (isUpdated) {
-            navigate("/display");
-        }
-    }, [isUpdated]);
+    }, [isCreated, isUpdated]);
 
+    // Función de envío del formulario
     const onSubmit: SubmitHandler<IDisplayInputs> = async (values) => {
         setFormStatus(FORM_STATUS.UPLOADING);
         if (params.id) {
@@ -76,6 +77,7 @@ function FormDisplayPage() {
     return (
         <div className="flex flex-col items-center justify-center p-6 h-[calc(100vh-80px)]">
             <div className="flex justify-between relative bg-neutral-100 rounded-xl max-w-96 w-96 px-4 py-2">
+                {/* Formulario */}
                 <form
                     onSubmit={handleSubmit(onSubmit)}
                     className="flex flex-col gap-4 w-full p-2"
@@ -83,7 +85,7 @@ function FormDisplayPage() {
                     <h3 className="text-xl text-sky-700 text-center font-bold">
                         Añadir Pantalla
                     </h3>
-
+                    {/* Campos del formulario - Nombre */}
                     <label className="relative border border-sky-600 rounded">
                         <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
                             Nombre
@@ -101,7 +103,7 @@ function FormDisplayPage() {
                             *Debe ingresar un nombre para la pantalla
                         </p>
                     )}
-
+                    {/* Campos del formulario - Descripcion */}
                     <label className="relative border border-sky-600 rounded">
                         <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
                             Descripción
@@ -118,7 +120,7 @@ function FormDisplayPage() {
                             *Debe ingresar una descripción para la pantalla
                         </p>
                     )}
-
+                    {/* Campos del formulario - Precio y tipo */}
                     <div className="flex gap-2">
                         <label className="relative border border-sky-600 rounded w-1/2">
                             <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
@@ -160,7 +162,7 @@ function FormDisplayPage() {
                             *Debe ingresar un tipo para la pantalla
                         </p>
                     )}
-
+                    {/* Campos del formulario - Resolucion en alto y ancho */}
                     <div className="flex gap-2">
                         <label className="relative border border-sky-600 rounded">
                             <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
@@ -193,6 +195,7 @@ function FormDisplayPage() {
                         </p>
                     )}
 
+                    {/* Botón de envío */}
                     {formStatus === FORM_STATUS.IDLE && (
                         <button
                             type="submit"
@@ -201,7 +204,7 @@ function FormDisplayPage() {
                             {params.id ? "Actualizar" : "Añadir"}
                         </button>
                     )}
-
+                    {/* Indicador de carga */}
                     {formStatus === FORM_STATUS.UPLOADING && <Loader />}
                 </form>
             </div>

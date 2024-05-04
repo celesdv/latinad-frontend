@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 const DisplayCard = ({ display }: any) => {
     const { deleteDisplay } = useDisplay()
 
+    /**
+     * Manejador para eliminar una pantalla.
+     * @param {number} id - El ID de la pantalla a eliminar.
+     */
     async function handleDelete(id: number) {
         await deleteDisplay(id)
     }
@@ -13,16 +17,20 @@ const DisplayCard = ({ display }: any) => {
     return (
         <div className="h-full">
             <div className="rounded-lg overflow-hidden relative">
+                {/* Imagen de la pantalla */}
                 <img
                     src={display.picture_url}
                     alt={display.name + "-img"}
                     className="h-full w-full"
                 />
+                {/* Tipo de pantalla */}
                 <span className="absolute top-5 right-0 text-xl rounded-l-full px-4 py-2 font-semibold capitalize bg-neutral-800 text-neutral-100 min-w-28 shadow-xl shadow-sky-700">
                     {display.type}
                 </span>
+                {/* Nombre de la pantalla y botones de acción */}
                 <span className="absolute bottom-0 w-full h-16 lg:h-20 text-xl font-semibold capitalize bg-sky-800 text-neutral-100 min-w-28 shadow-xl shadow-sky-700">
                     <div className="flex justify-between h-full">
+                        {/* Botón para eliminar */}
                         <div className="flex items-end">
                             <button
                                 onClick={() => handleDelete(display.id)}
@@ -31,7 +39,9 @@ const DisplayCard = ({ display }: any) => {
                                 <TrashIcon className="size-6 text-neutral-100" />
                             </button>
                         </div>
+                        {/* Nombre de la pantalla */}
                         <div className="grow text-center w-16 pt-2">{display.name}</div>
+                        {/* Botón para editar */}
                         <div className="flex items-end">
                             <Link
                                 to={`form/${display.id}`}

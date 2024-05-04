@@ -1,10 +1,18 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { createDisplayRequest, deleteDisplayRequest, getDisplayByRequest, getDisplayRequest, updateDisplayRequest } from "../api/display";
+import {
+  createDisplayRequest,
+  deleteDisplayRequest,
+  getDisplayByRequest,
+  getDisplayRequest,
+  updateDisplayRequest,
+} from "../api/display";
 
+// Propiedades del componente
 type IProps = {
   children?: ReactNode;
 };
 
+// Tipo de datos para una pantalla
 type IDisplay = {
   id: number;
   name: string;
@@ -17,22 +25,24 @@ type IDisplay = {
   type: string;
 };
 
+// Tipo de datos para el contexto de visualización
 type IDisplayContext = {
   display: IDisplay[];
   isCreated: boolean;
-  isUpdated:boolean;
+  isUpdated: boolean;
   totalDisplay: number;
-  pageSize: number
+  pageSize: number;
   loading: boolean;
   name: string;
   type: string;
-  createDisplay: (data: any) => {};
-  getDisplay: (offset: number, name: string, type: string) => {};
-  deleteDisplay: (id: number) => {};
-  getDisplayBy: (id: number) => {};
-  updateDisplay: (data: any, id: number) => {};
+  createDisplay: (data: any) => void;
+  getDisplay: (offset: number, name: string, type: string) => void;
+  deleteDisplay: (id: number) => void;
+  getDisplayBy: (id: number) => Promise<any>;
+  updateDisplay: (data: any, id: number) => void;
 };
 
+// Contexto de visualización
 export const DisplayContext = createContext<IDisplayContext>({
   display: [],
   isCreated: false,
@@ -40,15 +50,16 @@ export const DisplayContext = createContext<IDisplayContext>({
   totalDisplay: 0,
   pageSize: 0,
   loading: false,
-  name: '',
-  type: '',
+  name: "",
+  type: "",
   createDisplay: async () => { },
   getDisplay: async () => { },
   deleteDisplay: async () => { },
-  getDisplayBy: async () => { },
+  getDisplayBy: async () => ({}),
   updateDisplay: async () => { },
 });
 
+// Hook personalizado para acceder al contexto de visualización
 export const useDisplay = () => {
   const context = useContext(DisplayContext);
   if (!context) {
@@ -58,72 +69,99 @@ export const useDisplay = () => {
 };
 
 export const DisplayProvider = ({ children }: IProps) => {
+  // Estados para las pantallas, estado de carga y otros detalles relacionados con la visualización
   const [display, setDisplay] = useState<IDisplay[]>([]);
   const [isCreated, setIsCreated] = useState<boolean>(false);
   const [isUpdated, setIsUpdated] = useState<boolean>(false);
   const [totalDisplay, setTotalDisplay] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(6);
   const [loading, setLoading] = useState<boolean>(false);
-  const [name, setName] = useState<string>('');
-  const [type, setType] = useState<string>('');
+  const [name, setName] = useState<string>("");
+  const [type, setType] = useState<string>("");
 
-  const getDisplay = async (offset: number, newName: string, newType: string) => {
-    setLoading(true)
-    if (newName) setName(newName)
-    if (newType) setType(newType)
+  // Función para obtener las pantallas
+  const getDisplay = async (
+    offset: number,
+    newName: string,
+    newType: string
+  ) => {
+    setLoading(true);
+    if (newName) setName(newName);
+    if (newType) setType(newType);
     try {
       const res = await getDisplayRequest(pageSize, offset, newName, newType);
-      setDisplay(res.data.data)
-      setTotalDisplay(res.data.totalCount)
-      setIsUpdated(false)
-      setIsCreated(false)
+      setDisplay(res.data.data);
+      setTotalDisplay(res.data.totalCount);
+      setIsUpdated(false);
+      setIsCreated(false);
     } catch (error) {
       console.error(error);
     }
-    setLoading(false)
+    setLoading(false);
   };
 
+  // Función para crear una nueva pantalla
   const createDisplay = async (data: any) => {
     try {
       await createDisplayRequest(data);
-      setIsCreated(true)
+      setIsCreated(true);
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Función para eliminar una pantalla
   const deleteDisplay = async (id: number) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const res = await deleteDisplayRequest(id)
-      if (res.status === 200) setDisplay(display.filter(el => el.id != id))
-      setTotalDisplay(totalDisplay - 1)
+      const res = await deleteDisplayRequest(id);
+      if (res.status === 200) setDisplay(display.filter((el) => el.id != id));
+      setTotalDisplay(totalDisplay - 1);
     } catch (error) {
       console.error(error);
     }
-    setLoading(false)
+    setLoading(false);
   };
 
+  // Función para obtener una pantalla por su ID
   const getDisplayBy = async (id: number) => {
     try {
-      const res = await getDisplayByRequest(id)
-      return res.data
+      const res = await getDisplayByRequest(id);
+      return res.data;
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Función para actualizar una pantalla
   const updateDisplay = async (data: any, id: number) => {
     try {
-      await updateDisplayRequest(data, id)
-      setIsUpdated(true)
+      await updateDisplayRequest(data, id);
+      setIsUpdated(true);
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Proveedor de contexto de visualización
   return (
-    <DisplayContext.Provider value={{ display, loading, totalDisplay, pageSize, createDisplay, getDisplay, deleteDisplay, getDisplayBy, updateDisplay, isCreated, isUpdated, name, type }}>
+    <DisplayContext.Provider
+      value={{
+        display,
+        loading,
+        totalDisplay,
+        pageSize,
+        createDisplay,
+        getDisplay,
+        deleteDisplay,
+        getDisplayBy,
+        updateDisplay,
+        isCreated,
+        isUpdated,
+        name,
+        type,
+      }}
+    >
       {children}
     </DisplayContext.Provider>
   );
