@@ -23,8 +23,7 @@ function FilterBar() {
       if (values.outdoor) return 'outdoor'
     }
     const type = selectType()
-    const name = values.name
-    await getDisplay(0, name, type)
+    await getDisplay(0, values.name, type ? type : '')
   };
 
   return (

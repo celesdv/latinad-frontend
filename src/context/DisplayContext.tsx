@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { createDisplayRequest, getDisplayRequest } from "../api/display";
+import { createDisplayRequest, deleteDisplayRequest, getDisplayRequest } from "../api/display";
 
 type IProps = {
   children?: ReactNode;
@@ -21,16 +21,26 @@ type IDisplayContext = {
   display: IDisplay[];
   isCreated: boolean;
   totalDisplay: number;
+  pageSize: number
+  loading: boolean;
+  name: string;
+  type: string;
   createDisplay: (data: any) => {};
-  getDisplay: (offset?: number, name?: string, type?: string) => {};
+  getDisplay: (offset: number, name: string, type: string) => {};
+  deleteDisplay: (id: number) => {};
 };
 
 export const DisplayContext = createContext<IDisplayContext>({
   display: [],
   isCreated: false,
   totalDisplay: 0,
+  pageSize: 0,
+  loading: false,
+  name: '',
+  type: '',
   createDisplay: async () => { },
   getDisplay: async () => { },
+  deleteDisplay: async () => { },
 });
 
 export const useDisplay = () => {
@@ -44,17 +54,24 @@ export const useDisplay = () => {
 export const DisplayProvider = ({ children }: IProps) => {
   const [display, setDisplay] = useState<IDisplay[]>([]);
   const [isCreated, setIsCreated] = useState<boolean>(false);
-  const [totalDisplay, setTotalDisplay] = useState<number>(1)
+  const [totalDisplay, setTotalDisplay] = useState<number>(1);
+  const [pageSize, setPageSize] = useState<number>(6);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [name, setName] = useState<string>('');
+  const [type, setType] = useState<string>('');
 
-  const getDisplay = async (offset = 0, name = '', type = '') => {
-    const pageSize = 10
+  const getDisplay = async (offset: number, newName: string, newType: string) => {
+    setLoading(true)
+    if (newName) setName(newName)
+    if (newType) setType(newType)
     try {
-      const res = await getDisplayRequest(pageSize, offset, name, type);
+      const res = await getDisplayRequest(pageSize, offset, newName, newType);
       setDisplay(res.data.data)
       setTotalDisplay(res.data.totalCount)
     } catch (error) {
       console.error(error);
     }
+    setLoading(false)
   };
 
   const createDisplay = async (data: any) => {
@@ -66,8 +83,20 @@ export const DisplayProvider = ({ children }: IProps) => {
     }
   };
 
+  const deleteDisplay = async (id: number) => {
+    setLoading(true)
+    try {
+      const res = await deleteDisplayRequest(id)
+      if (res.status === 200) setDisplay(display.filter(el => el.id != id))
+      setTotalDisplay(totalDisplay - 1)
+    } catch (error) {
+      console.error(error);
+    }
+    setLoading(false)
+  };
+
   return (
-    <DisplayContext.Provider value={{ display, totalDisplay, createDisplay, getDisplay, isCreated }}>
+    <DisplayContext.Provider value={{ display, loading, totalDisplay, pageSize, createDisplay, getDisplay, deleteDisplay, isCreated, name, type }}>
       {children}
     </DisplayContext.Provider>
   );

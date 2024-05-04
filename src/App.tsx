@@ -22,7 +22,7 @@ function App() {
               <Route path="/display/form" element={<FormDisplayPage />} />
               <Route
                 path="/display/form/:id"
-                element={<h1>Editar Pantalla</h1>}
+                element={<FormDisplayPage />}
               />
             </Route>
           </Routes>
