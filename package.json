@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "http://celesdv.github.io/latinad-frontend",  
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
