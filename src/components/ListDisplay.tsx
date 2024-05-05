@@ -2,16 +2,19 @@ import { useEffect, useState } from "react";
 import useDisplay from "../hooks/useDisplay";
 import FilterBar from "./FilterBar";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
+import { Tooltip } from "react-tooltip";
+import SliderDisplay from "./SliderDisplay";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import SliderDisplay from "./SliderDisplay";
+import "react-tooltip/dist/react-tooltip.css";
 
 function ListDisplay() {
   // Inicialización de estado y hook personalizado
-  const { display, getDisplay, totalDisplay, pageSize, name, type } = useDisplay();
+  const { display, getDisplay, totalDisplay, pageSize, name, type } =
+    useDisplay();
   const [offset, setOffset] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -40,7 +43,6 @@ function ListDisplay() {
 
   return (
     <div className="container">
-
       <div>
         <FilterBar />
         <SliderDisplay />
@@ -51,6 +53,9 @@ function ListDisplay() {
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
+            data-tooltip-id="pagination"
+            data-tooltip-content="Página anterior"
+            data-tooltip-place="bottom"
             className={
               "text-neutral-100 rounded-full p-2 shadow-lg " +
               (currentPage === 1
@@ -61,11 +66,16 @@ function ListDisplay() {
             <ArrowLeftIcon className="size-5 text-neutral-100" />
           </button>
           {/* Indicador de página actual */}
-          <span className="text-sm font-semibold text-sky-800">Página {currentPage}</span>
+          <span className="text-sm font-semibold text-sky-800">
+            Página {currentPage}
+          </span>
           {/* Botón de página siguiente */}
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage * pageSize >= totalDisplay}
+            data-tooltip-id="pagination"
+            data-tooltip-content="Página siguiente"
+            data-tooltip-place="bottom"
             className={
               "text-neutral-100 rounded-full p-2 shadow-lg " +
               (currentPage * pageSize >= totalDisplay
@@ -83,7 +93,7 @@ function ListDisplay() {
           </span>
         </div>
       </div>
-
+      <Tooltip id="pagination" />
     </div>
   );
 }

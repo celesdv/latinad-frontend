@@ -4,6 +4,9 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PlusIcon } from "@heroicons/react/24/solid";
+import { Tooltip } from 'react-tooltip'
+
+import 'react-tooltip/dist/react-tooltip.css'
 
 // Definir el tipo para los campos del formulario
 type IInputs = {
@@ -71,6 +74,8 @@ function FilterBar() {
           <div className="flex items-center gap-3">
             <button
               type="submit"
+              data-tooltip-id="add-display" 
+              data-tooltip-content="Filtrar"
               className="text-neutral-100 focus:outline-none rounded-full text-sm p-2 text-center bg-sky-600 hover:bg-sky-800 shadow-lg shadow-neutral-500"
             >
               <MagnifyingGlassIcon className="size-5 text-neutral-100" />
@@ -78,12 +83,13 @@ function FilterBar() {
           </div>
         </form>
         {/* Boton con enlace para añadir nueva pantalla */}
-        <Link to="form">
+        <Link to="form" data-tooltip-id="add-display" data-tooltip-content="Añadir nueva pantalla">
           <div className="flex items-center gap-1 text-neutral-100 focus:outline-none rounded-full text-sm p-4 text-center bg-sky-600 hover:bg-sky-800 shadow-lg">
             <PlusIcon className="size-6 text-neutral-100" />
           </div>
         </Link>
       </div>
+      <Tooltip id="add-display" />
     </div>
   );
 }

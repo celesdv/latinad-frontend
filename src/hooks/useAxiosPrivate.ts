@@ -17,6 +17,7 @@ const useAxiosPrivate = () => {
         // Devuelve la configuración de la solicitud actualizada
         return config;
       },
+      
       // Función ejecutada en caso de error
       (error) => Promise.reject(error)
     );
