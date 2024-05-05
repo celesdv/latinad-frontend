@@ -7,6 +7,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { DisplayProvider } from "./context/DisplayContext";
 import DisplayPage from "./pages/DisplayPage";
 import LandingPage from "./pages/LandingPage"
+import { Toaster } from "sonner";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        <Toaster position="bottom-center" richColors closeButton/>
       </DisplayProvider>
     </AuthProvider>
   );

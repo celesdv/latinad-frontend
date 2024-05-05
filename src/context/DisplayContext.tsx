@@ -35,11 +35,11 @@ type IDisplayContext = {
   loading: boolean;
   name: string;
   type: string;
-  createDisplay: (data: any) => void;
+  createDisplay: (data: any) => Promise<any>;
   getDisplay: (offset: number, name: string, type: string) => void;
-  deleteDisplay: (id: number) => void;
+  deleteDisplay: (id: number) => Promise<any>;
   getDisplayBy: (id: number) => Promise<any>;
-  updateDisplay: (data: any, id: number) => void;
+  updateDisplay: (data: any, id: number) => Promise<any>;
 };
 
 // Contexto de visualización
@@ -52,9 +52,9 @@ export const DisplayContext = createContext<IDisplayContext>({
   loading: false,
   name: "",
   type: "",
-  createDisplay: async () => { },
+  createDisplay: async () => {{}},
   getDisplay: async () => { },
-  deleteDisplay: async () => { },
+  deleteDisplay: async () => {{}},
   getDisplayBy: async () => ({}),
   updateDisplay: async () => { },
 });
@@ -103,7 +103,7 @@ export const DisplayProvider = ({ children }: IProps) => {
   // Función para crear una nueva pantalla
   const createDisplay = async (data: any) => {
     try {
-      await createDisplayRequest(data);
+      const res = await createDisplayRequest(data);
       setIsCreated(true);
     } catch (error) {
       console.error(error);
@@ -117,10 +117,14 @@ export const DisplayProvider = ({ children }: IProps) => {
       const res = await deleteDisplayRequest(id);
       if (res.status === 200) setDisplay(display.filter((el) => el.id != id));
       setTotalDisplay(totalDisplay - 1);
+      setLoading(false);
+      return res
     } catch (error) {
       console.error(error);
+      setLoading(false);
+      return error
     }
-    setLoading(false);
+    
   };
 
   // Función para obtener una pantalla por su ID

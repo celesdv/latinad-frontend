@@ -33,31 +33,28 @@ export const getDisplayByRequest = async (id: number): Promise<any> =>
 
 /**
  * Realiza una solicitud para crear una nueva pantalla de visualización.
- * @param {Object} data - Datos de la pantalla de visualización a crear.
- * @returns {Promise<void>} - Promesa que se resuelve una vez que la pantalla de visualización se ha creado con éxito.
+ * @param {Object} data - Datos de la pantalla de visualización a crear. 
  */
-export const createDisplayRequest = async (data: any): Promise<void> =>
+export const createDisplayRequest = async (data: any) =>
   // Realiza una solicitud POST utilizando la instancia de Axios configurada para solicitudes privadas
   axiosPrivate.post("/display", data);
 
 /**
  * Realiza una solicitud para actualizar los detalles de una pantalla de visualización existente.
  * @param {Object} data - Datos actualizados de la pantalla de visualización.
- * @param {number} id - Identificador único de la pantalla de visualización a actualizar.
- * @returns {Promise<void>} - Promesa que se resuelve una vez que la pantalla de visualización se ha actualizado con éxito.
+ * @param {number} id - Identificador único de la pantalla de visualización a actualizar. 
  */
 export const updateDisplayRequest = async (
   data: any,
   id: number
-): Promise<void> =>
+) =>
   // Realiza una solicitud PUT utilizando la instancia de Axios configurada para solicitudes privadas
   axiosPrivate.put(`/display/${id}`, data);
 
 /**
  * Realiza una solicitud para eliminar una pantalla de visualización existente.
- * @param {number} id - Identificador único de la pantalla de visualización a eliminar.
- * @returns {Promise<void>} - Promesa que se resuelve una vez que la pantalla de visualización se ha eliminado con éxito.
+ * @param {number} id - Identificador único de la pantalla de visualización a eliminar. 
  */
-export const deleteDisplayRequest = async (id: number): Promise<void> =>
+export const deleteDisplayRequest = async (id: number) =>
   // Realiza una solicitud DELETE utilizando la instancia de Axios configurada para solicitudes privadas
   axiosPrivate.delete(`/display/${id}`);

@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Loader from "../components/Loader";
 import useDisplay from "../hooks/useDisplay";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 // Definición de los tipos de entrada para el formulario
 type IDisplayInputs = {
@@ -60,6 +61,7 @@ function FormDisplayPage() {
     useEffect(() => {
         if (isCreated || isUpdated) {
             navigate("/display");
+            toast.success(`La pantalla fue ${isCreated ? 'creada' : 'actualizada'}`);
         }
     }, [isCreated, isUpdated]);
 
