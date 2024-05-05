@@ -82,7 +82,7 @@ In this page, there is a form displaying various fields required for creating di
 
 https://latinad-frontend.vercel.app/
 
-#Stack
+# Stack
 
 ## React + TypeScript + Vite
 
