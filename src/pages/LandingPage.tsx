@@ -1,6 +1,6 @@
 function LandingPage() {
     return (
-        <div className="p-4 h-[calc(100vh-70px)]">
+        <div className="p-4 h-[calc(100vh-5.1rem)]">
             <h3 className="text-4xl text-center text-sky-700 tracking-wide">
                 <span className="text-neutral-800">LATIN<span className="font-bold">AD</span></span> Challenge
             </h3>

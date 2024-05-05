@@ -20,7 +20,7 @@ function NavBar() {
 
   return (
     <nav className="bg-gray-900 w-full border-b border-neutral-600 ">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-20">
         {/* Enlace al dashboard si el usuario está autenticado, de lo contrario, enlace al inicio de sesión */}
         <Link to={isAuthenticated ? "/display" : "/"}>
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-neutral-100 ">

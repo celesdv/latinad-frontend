@@ -48,7 +48,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 h-[calc(100vh-70px)]">
+    <div className="flex flex-col items-center justify-center p-6 h-[calc(100vh-5.1rem)]">
       {/* Formulario de inicio de sesión */}
       <form
         onSubmit={handleSubmit(onSubmit)}

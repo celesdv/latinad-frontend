@@ -3,11 +3,26 @@ import { PencilIcon } from "@heroicons/react/24/solid";
 import useDisplay from "../hooks/useDisplay";
 import { Link } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
+import { simpleConfirm } from 'react-simple-dialogs'
 
 import "react-tooltip/dist/react-tooltip.css";
 
 const DisplayCard = ({ display }: any) => {
     const { deleteDisplay } = useDisplay();
+
+    const showConfirmation = async () => {
+        if (await simpleConfirm({
+            title: "Eliminar Pantalla",
+            message: `Confirme que desea eliminar la pantalla ${display.name}`,
+            confirmLabel: 'Eliminar',
+            cancelLabel: 'Cancelar'
+        })) {
+            console.log('Confirmed! 😄', display.id)
+            handleDelete(display.id)
+        } else {
+            console.log('Not confirmed. 🥲')
+        }
+    }
 
     /**
      * Manejador para eliminar una pantalla.
@@ -44,7 +59,7 @@ const DisplayCard = ({ display }: any) => {
                         {/* Botón para eliminar */}
                         <div className="flex items-end">
                             <button
-                                onClick={() => handleDelete(display.id)}
+                                onClick={showConfirmation}
                                 className="pt-7 pl-4 pb-4 pr-7 rounded-tr-full bg-sky-600 hover:bg-sky-400"
                                 data-tooltip-id="form-tooltip"
                                 data-tooltip-place="right"

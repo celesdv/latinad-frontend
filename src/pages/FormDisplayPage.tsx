@@ -75,8 +75,8 @@ function FormDisplayPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center p-6 h-[calc(100vh-80px)]">
-            <div className="flex justify-between relative bg-neutral-100 rounded-xl max-w-96 w-96 px-4 py-2">
+        <div className="flex flex-col items-center justify-center p-6 h-[calc(100vh-5.1rem)]">
+            <div className="flex justify-between relative bg-neutral-100 rounded-xl max-w-96 w-96 px-6 py-2 shadow-lg">
                 {/* Formulario */}
                 <form
                     onSubmit={handleSubmit(onSubmit)}
@@ -87,7 +87,7 @@ function FormDisplayPage() {
                     </h3>
                     {/* Campos del formulario - Nombre */}
                     <label className="relative border border-sky-600 rounded">
-                        <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
+                        <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 shadow text-neutral-100">
                             Nombre
                         </span>
                         <input
@@ -105,7 +105,7 @@ function FormDisplayPage() {
                     )}
                     {/* Campos del formulario - Descripcion */}
                     <label className="relative border border-sky-600 rounded">
-                        <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
+                        <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 shadow text-neutral-100">
                             Descripción
                         </span>
                         <textarea
@@ -123,7 +123,7 @@ function FormDisplayPage() {
                     {/* Campos del formulario - Precio y tipo */}
                     <div className="flex gap-2">
                         <label className="relative border border-sky-600 rounded w-1/2">
-                            <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
+                            <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 shadow text-neutral-100">
                                 Precio
                             </span>
                             <input
@@ -136,7 +136,7 @@ function FormDisplayPage() {
                             />
                         </label>
                         <label className="relative border border-sky-600 rounded w-1/2">
-                            <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
+                            <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 shadow text-neutral-100">
                                 Tipo
                             </span>
                             <select
@@ -165,7 +165,7 @@ function FormDisplayPage() {
                     {/* Campos del formulario - Resolucion en alto y ancho */}
                     <div className="flex gap-2">
                         <label className="relative border border-sky-600 rounded">
-                            <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
+                            <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 shadow text-neutral-100">
                                 Alto
                             </span>
                             <input
@@ -177,7 +177,7 @@ function FormDisplayPage() {
                             />
                         </label>
                         <label className="relative border border-sky-600 rounded">
-                            <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
+                            <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 shadow bg-sky-600 text-neutral-100">
                                 Ancho
                             </span>
                             <input
@@ -199,7 +199,7 @@ function FormDisplayPage() {
                     {formStatus === FORM_STATUS.IDLE && (
                         <button
                             type="submit"
-                            className="flex text-neutral-100 bg-sky-700 font-bold uppercase rounded py-3 justify-center"
+                            className="flex text-neutral-100 bg-sky-700 font-bold uppercase rounded py-3 justify-center shadow-lg"
                         >
                             {params.id ? "Actualizar" : "Añadir"}
                         </button>
