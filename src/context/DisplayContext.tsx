@@ -86,8 +86,8 @@ export const DisplayProvider = ({ children }: IProps) => {
     newType: string
   ) => {
     setLoading(true);
-    if (newName) setName(newName);
-    if (newType) setType(newType);
+    setName(newName);
+    setType(newType);
     try {
       const res = await getDisplayRequest(pageSize, offset, newName, newType);
       setDisplay(res.data.data);
