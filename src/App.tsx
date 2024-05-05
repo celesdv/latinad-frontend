@@ -2,10 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import NavBar from "./components/NavBar";
 import LoginPage from "./pages/LoginPage";
-import DisplayPage from "./pages/DisplayPages";
 import FormDisplayPage from "./pages/FormDisplayPage";
 import { AuthProvider } from "./context/AuthContext";
 import { DisplayProvider } from "./context/DisplayContext";
+import DisplayPage from "./pages/DisplayPage";
+import LandingPage from "./pages/LandingPage"
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <BrowserRouter>
           <NavBar />
           <Routes>
-            <Route path="/" element={<h1>Home</h1>} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
 
             <Route element={<ProtectedRoute />}>

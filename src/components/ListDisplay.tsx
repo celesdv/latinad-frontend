@@ -52,7 +52,7 @@ function ListDisplay() {
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
             className={
-              "text-neutral-100 rounded-full p-2 " +
+              "text-neutral-100 rounded-full p-2 shadow-lg " +
               (currentPage === 1
                 ? "bg-neutral-400"
                 : "bg-sky-400 hover:bg-sky-600")
@@ -61,13 +61,13 @@ function ListDisplay() {
             <ArrowLeftIcon className="size-5 text-neutral-100" />
           </button>
           {/* Indicador de página actual */}
-          <span>Página {currentPage}</span>
+          <span className="text-sm font-semibold text-sky-800">Página {currentPage}</span>
           {/* Botón de página siguiente */}
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage * pageSize >= totalDisplay}
             className={
-              "text-neutral-100 rounded-full p-2 " +
+              "text-neutral-100 rounded-full p-2 shadow-lg " +
               (currentPage * pageSize >= totalDisplay
                 ? "bg-neutral-400"
                 : "bg-sky-400 hover:bg-sky-600")
@@ -77,8 +77,8 @@ function ListDisplay() {
           </button>
         </div>
         {/* Información de visualización */}
-        <div className="flex justify-center items-center">
-          <span className="text-sm">
+        <div className="flex justify-center items-center p-2">
+          <span className="text-xs">
             Mostrando {display.length} de {totalDisplay} pantallas
           </span>
         </div>

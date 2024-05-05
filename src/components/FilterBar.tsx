@@ -44,7 +44,7 @@ function FilterBar() {
         {/* Formulario de filtrado de pantallas */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex justify-between gap-2.5 relative bg-neutral-100 rounded-full  p-3"
+          className="flex justify-between gap-2.5 relative bg-neutral-100 rounded-full shadow-lg p-3"
         >
           {/* Input para filtro por nombre */}
           <label className="border rounded-full border-sky-800 p-1">
@@ -68,10 +68,10 @@ function FilterBar() {
             </label>
           </div>
           {/* Botón para filtrar */}
-          <div className="flex items-center gap-3 text-sky-700">
+          <div className="flex items-center gap-3">
             <button
               type="submit"
-              className="text-neutral-100 focus:outline-none rounded-full text-sm p-2 text-center bg-sky-600 hover:bg-sky-700"
+              className="text-neutral-100 focus:outline-none rounded-full text-sm p-2 text-center bg-sky-600 hover:bg-sky-800 shadow-lg shadow-neutral-500"
             >
               <MagnifyingGlassIcon className="size-5 text-neutral-100" />
             </button>
@@ -79,7 +79,7 @@ function FilterBar() {
         </form>
         {/* Boton con enlace para añadir nueva pantalla */}
         <Link to="form">
-          <div className="flex items-center gap-1 text-neutral-100 focus:outline-none rounded-full text-sm p-4 text-center bg-sky-600 hover:bg-sky-700">
+          <div className="flex items-center gap-1 text-neutral-100 focus:outline-none rounded-full text-sm p-4 text-center bg-sky-600 hover:bg-sky-800 shadow-lg">
             <PlusIcon className="size-6 text-neutral-100" />
           </div>
         </Link>

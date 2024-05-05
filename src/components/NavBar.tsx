@@ -32,7 +32,7 @@ function NavBar() {
           <button
             type="button"
             onClick={sessionHandler}
-            className="text-neutral-100 focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center bg-sky-600 hover:bg-sky-700 focus:ring-sky-800"
+            className="text-neutral-100 focus:ring-4 focus:outline-none shadow-lg font-medium rounded-full text-sm px-4 py-2 text-center bg-sky-600 hover:bg-sky-700 focus:ring-sky-800"
           >
             {!isAuthenticated ? "Iniciar sesión" : "Cerrar sesión"}
           </button>

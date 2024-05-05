@@ -59,7 +59,7 @@ function LoginPage() {
         </h3>
         {/* Campo de entrada de correo electrónico */}
         <label className="relative rounded-lg borde">
-          <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
+          <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 shadow-lg bg-sky-600 text-neutral-100">
             Email
           </span>
           <input
@@ -72,7 +72,7 @@ function LoginPage() {
         </label>
         {/* Campo de entrada de contraseña */}
         <label className="relative rounded-lg borde">
-          <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 text-neutral-100">
+          <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 shadow-lg bg-sky-600 text-neutral-100">
             Clave
           </span>
           <input
@@ -105,7 +105,7 @@ function LoginPage() {
         {loginStatus != LOGIN_STATUS.UPLOADING && (
           <button
             type="submit"
-            className="flex bg-neutral-100 text-sky-800 font-bold uppercase rounded py-3 justify-center"
+            className="flex bg-neutral-100 text-sky-800 font-bold uppercase rounded py-3 justify-center shadow-lg"
           >
             Ingresar
           </button>
