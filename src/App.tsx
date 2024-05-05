@@ -13,9 +13,9 @@ function App() {
   return (
     <AuthProvider>
       <DisplayProvider>
-        <BrowserRouter>
+        <BrowserRouter >
           <NavBar />
-          <Routes>
+          <Routes >
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
 
@@ -29,7 +29,7 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-        <Toaster position="bottom-center" richColors closeButton/>
+        <Toaster position="bottom-center" richColors closeButton />
       </DisplayProvider>
     </AuthProvider>
   );
