@@ -74,7 +74,7 @@ export const DisplayProvider = ({ children }: IProps) => {
   const [isCreated, setIsCreated] = useState<boolean>(false);
   const [isUpdated, setIsUpdated] = useState<boolean>(false);
   const [totalDisplay, setTotalDisplay] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(6);
+  const [pageSize] = useState<number>(6);
   const [loading, setLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [type, setType] = useState<string>("");
@@ -103,7 +103,7 @@ export const DisplayProvider = ({ children }: IProps) => {
   // Función para crear una nueva pantalla
   const createDisplay = async (data: any) => {
     try {
-      const res = await createDisplayRequest(data);
+      await createDisplayRequest(data);
       setIsCreated(true);
     } catch (error) {
       console.error(error);
