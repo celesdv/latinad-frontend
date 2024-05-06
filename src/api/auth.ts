@@ -10,10 +10,11 @@ export const loginRequest = async (user: { email: string; password: string }): P
     try {
       // Realiza una solicitud POST al endpoint `/login` con las credenciales del usuario
       const response = await axios.post("/login", user);
+      console.log(response)
       // Devuelve los datos de usuario y token de acceso de la respuesta del servidor
       return response.data;
-    } catch (error) {
+    } catch (error) {      
       // En caso de error, lanza una excepción para manejarlo en el código que llame a esta función
-      throw new Error("Error al iniciar sesión. Por favor, verifica tus credenciales.");
+      throw new Error("Error al iniciar sesión. Por favor, verifica tus credenciales.");      
     }
   }

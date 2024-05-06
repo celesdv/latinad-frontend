@@ -51,12 +51,11 @@ export const AuthProvider = ({ children }: IProps) => {
     try {
       const res = await loginRequest(values);
       setUser(res.data);
-      console.log(res)
       setIsAuthenticated(true);
       localStorage.setItem("tkn", res.token);
     } catch (error: any) {
       setLoginError(error);
-      console.error("Login error:", error);
+      if(error) setLoginError(true)
     }
   };
 
