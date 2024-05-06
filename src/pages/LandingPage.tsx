@@ -5,7 +5,7 @@ function LandingPage() {
                 <span className="text-neutral-800">LATIN<span className="font-bold">AD</span></span> Challenge
             </h3>
             <div className="md:flex p-6 gap-4">
-                <article className="w-full md:grow bg-sky-800 text-neutral-100 shadow p-6 rounded-lg max-h-[13rem] md:max-h-[28rem] overflow-y-auto">
+                <article className="w-full md:grow bg-sky-800 text-neutral-100 shadow p-6 rounded-lg max-h-[20rem] md:max-h-[28rem] overflow-y-auto">
                     <div className="flex flex-col space-y-2 text-justify">
                         <p>
                             El desafío consiste en desarrollar una pequeña aplicación web para
@@ -91,14 +91,14 @@ function LandingPage() {
                     </div>
                 </article>
 
-                <aside className="w-full md:w-2/5 max-h-[13rem] md:max-h-[28rem] flex flex-col gap-4">
+                <aside className="w-full md:w-2/5 max-h-[18rem] md:max-h-[28rem] flex flex-col gap-4">
                     <div className="bg-sky-950 h-20 md:h-24 mt-4 md:mt-0 rounded-lg p-6 text-neutral-100 shadow flex flex-col justify-center">
                         <h4 className="text-lg font-semibold">
                             <span className="uppercase">Postulante:</span> Celeste D'Angelo
                         </h4>
                         <p>FullStack Developer</p>
                     </div>
-                    <div className="bg-sky-600 h-[21rem] space-y-4 rounded-lg p-6 text-neutral-100 shadow overflow-y-auto text-justify">
+                    <div className="bg-sky-600 grow md:grow-0 space-y-4 rounded-lg p-6 text-neutral-100 shadow overflow-y-auto text-justify">
                         <p>
                             Soy un desarrollador Full Stack con una sólida formación en
                             diversas tecnologías y Arquitecta con 9 años de experiencia. Mi

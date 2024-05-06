@@ -42,7 +42,7 @@ const DisplayCard = ({ display }: any) => {
 
   return (
     <div className="h-full">
-      <div className="rounded-lg overflow-hidden relative">
+      <div className="rounded-lg overflow-hidden relative bg-sky-500">
         {/* Imagen de la pantalla */}
         <img
           src={display.picture_url}
@@ -61,7 +61,7 @@ const DisplayCard = ({ display }: any) => {
           {display.type}
         </span>
         {/* Nombre de la pantalla y botones de acción */}
-        <span className="absolute bottom-0 w-full h-16 lg:h-20 text-xl font-semibold capitalize bg-sky-800 text-neutral-100 min-w-28 shadow-xl shadow-sky-700">
+        <span className="md:absolute md:bottom-0 w-full h-16 lg:h-20 text-xl font-semibold capitalize bg-sky-800 text-neutral-100 min-w-28 shadow-xl shadow-sky-700">
           <div className="flex justify-between h-full">
             {/* Botón para eliminar */}
             <div className="flex items-end">

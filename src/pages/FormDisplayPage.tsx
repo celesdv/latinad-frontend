@@ -78,7 +78,7 @@ function FormDisplayPage() {
 
     return (
         <div className="flex flex-col items-center justify-center p-6 h-[calc(100vh-5.1rem)]">
-            <div className="flex justify-between relative bg-neutral-100 rounded-xl max-w-96 w-96 px-6 py-2 shadow-lg">
+            <div className="flex justify-between relative bg-neutral-100 rounded-xl w-96 max-w-full px-6 py-2 shadow-lg">
                 {/* Formulario */}
                 <form
                     onSubmit={handleSubmit(onSubmit)}
@@ -123,8 +123,8 @@ function FormDisplayPage() {
                         </p>
                     )}
                     {/* Campos del formulario - Precio y tipo */}
-                    <div className="flex gap-2">
-                        <label className="relative border border-sky-600 rounded w-1/2">
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-2">
+                        <label className="relative border border-sky-600 rounded w-full md:w-1/2">
                             <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 shadow text-neutral-100">
                                 Precio
                             </span>
@@ -137,7 +137,12 @@ function FormDisplayPage() {
                                 className="w-full border-0 bg-neutral-100 rounded text-sky-800 p-3 focus:outline-0 placeholder:text-sky-400"
                             />
                         </label>
-                        <label className="relative border border-sky-600 rounded w-1/2">
+                        {errors.price_per_day && (
+                            <p className="text-xs text-center text-red-500 -mt-4 block md:hidden">
+                                *Debe ingresar un precio por día
+                            </p>
+                        )}
+                        <label className="relative border border-sky-600 rounded w-full md:w-1/2">
                             <span className="absolute left-2 -translate-y-1/2 pointer-events-none rounded px-1 bg-sky-600 shadow text-neutral-100">
                                 Tipo
                             </span>
@@ -155,8 +160,8 @@ function FormDisplayPage() {
                         </label>
                     </div>
                     {errors.price_per_day && (
-                        <p className="text-xs text-center text-red-500 -mt-4">
-                            *Debe ingresar un precio por dia en números enteros
+                        <p className="text-xs text-center text-red-500 -mt-4 hidden md:block">
+                            *Debe ingresar un precio por día en números enteros
                         </p>
                     )}
                     {errors.type && (
