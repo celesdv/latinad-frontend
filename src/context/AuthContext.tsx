@@ -55,8 +55,7 @@ export const AuthProvider = ({ children }: IProps) => {
       localStorage.setItem("tkn", res.token);
     } catch (error: any) {
       setLoginError(error);
-      if(error) setLoginError(true)
-    }
+    } 
   };
 
   // Función para cerrar sesión

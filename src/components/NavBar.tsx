@@ -23,8 +23,12 @@ function NavBar() {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 h-20">
         {/* Enlace al dashboard si el usuario está autenticado, de lo contrario, enlace al inicio de sesión */}
         <Link to={isAuthenticated ? "/display" : "/"}>
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-neutral-100 ">
-            LatinAd
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-neutral-100 flex items-center">
+            <img
+              src='src\assets\images\main-logo.png'
+              alt=''
+              className="h-10"
+            />
           </span>
         </Link>
         {/* Botón para iniciar/cerrar sesión con sessionHandler */}
