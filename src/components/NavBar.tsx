@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import logo from '../../public/main-logo.png'
 
 
 function NavBar() {
@@ -25,7 +26,7 @@ function NavBar() {
         <Link to={isAuthenticated ? "/display" : "/"}>
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-neutral-100 flex items-center">
             <img
-              src='public\main-logo.png'
+              src={logo}
               alt=''
               className="h-10 w-full"
             />

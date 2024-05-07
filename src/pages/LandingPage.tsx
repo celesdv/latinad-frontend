@@ -1,8 +1,10 @@
+import logo from '../../public/logo.png'
+
 function LandingPage() {
     return (
         <div className="p-4 h-[calc(100vh-5.1rem)]">
             <div className="flex justify-center items-center gap-2">
-                <img src="public\logo.png" alt="" className="h-10" />
+                <img src={logo} alt="" className="h-10" />
                 <div >
                     <span className="text-lg text-center bg-sky-900 text-neutral-100 px-4 py-1 rounded-full shadow">
                         Challenge
