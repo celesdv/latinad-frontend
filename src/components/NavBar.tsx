@@ -25,9 +25,9 @@ function NavBar() {
         <Link to={isAuthenticated ? "/display" : "/"}>
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-neutral-100 flex items-center">
             <img
-              src='src\assets\images\main-logo.png'
+              src='public\main-logo.png'
               alt=''
-              className="h-10"
+              className="h-10 w-full"
             />
           </span>
         </Link>
