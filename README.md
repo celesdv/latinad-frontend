@@ -58,25 +58,34 @@ The challenge consists of developing a small web application to manage the adver
 
 The home page consists of a project description and a button with a link located in the header to access the application.
 
-![image](https://github.com/celesdv/latinad-frontend/assets/66212987/068c75a8-7cd5-4ff2-a293-19844a1d48c3)
+
+![image](https://github.com/celesdv/latinad-frontend/assets/66212987/138c996b-43e2-4dc7-898a-ed17a63cf676)
+
+
+
 
 **Login page:**
 
 The login page presents a form comprising fields for email and password, for user login.
 
-![image](https://github.com/celesdv/latinad-frontend/assets/66212987/a7547538-2927-40df-a93c-d34be09faebe)
+![image](https://github.com/celesdv/latinad-frontend/assets/66212987/467f2d66-b636-46da-9675-e91253b5b3b6) 
+
+
 
 **Display page:**
 
 On the display page, users can see a collection of the display they've created presented in a sliding interface. This interface is designed with pagination to align with the requirements of the backend application. Users have the option to edit or delete each display individually based on their needs. Additionally, users can filter the display by type and name. Furthermore, there's a prominent button available that provides access to the display creation form.
 
-![image](https://github.com/celesdv/latinad-frontend/assets/66212987/1b560bfb-9be8-4e77-81b2-5b4bcfbcb4b9)
+![image](https://github.com/celesdv/latinad-frontend/assets/66212987/b6fc92da-cfd9-4faf-921a-afe4417a2c02) 
+
+
 
 **Display form page:**
 
 In this page, there is a form displaying various fields required for creating display. This form serves both for creating and editing display.
 
-![image](https://github.com/celesdv/latinad-frontend/assets/66212987/4a4b6c0c-e968-40f9-aa7e-caf883bee459)
+![image](https://github.com/celesdv/latinad-frontend/assets/66212987/986c36cb-c204-4cf9-b751-828fac42c219) 
+
 
 ## Link to deploy
 
