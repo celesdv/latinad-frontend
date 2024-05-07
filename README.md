@@ -86,6 +86,12 @@ In this page, there is a form displaying various fields required for creating di
 
 ![image](https://github.com/celesdv/latinad-frontend/assets/66212987/986c36cb-c204-4cf9-b751-828fac42c219) 
 
+## Responsive
+
+<img src="https://github.com/celesdv/latinad-frontend/assets/66212987/52e0829a-243a-4c86-98f0-d56ee2a57295" width="30%"/>
+<img src="https://github.com/celesdv/latinad-frontend/assets/66212987/419851e5-02b5-4233-8905-d570dc55e2ae" width="30%"/>
+<img src="https://github.com/celesdv/latinad-frontend/assets/66212987/81a53721-af04-4881-a971-0dc5f21184c1" width="30%"/>
+
 
 ## Link to deploy
 
